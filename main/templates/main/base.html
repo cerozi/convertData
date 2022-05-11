@@ -1,0 +1,49 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel='stylesheet' href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="site-wrapper">
+
+        <div class="site-wrapper-inner">
+  
+          <div class="container">
+  
+            <div class="masthead clearfix">
+              <div class="container inner">
+                <nav>
+                  <ul class="nav masthead-nav">
+                    <li class="active"><a href="#">home</a></li>
+                    <li><a href="#">all data</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+  
+            <div class="inner cover">
+              <h1 class="cover-heading">insert your .txt file here.</h1>
+              <form method="POST" action="" enctype="multipart/form-data"> {% csrf_token %}
+                    <center><input type="file" name='document'></center>
+                    <br>
+                    <button type="submit" class="btn btn-lg btn-default">Send</button>
+              </form>
+            </div>
+  
+          </div>
+  
+        </div>
+  
+      </div>
+
+</body>
+</html>
