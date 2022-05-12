@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Data
+from django.contrib import messages
 
 # Create your views here.
 def homeView(request):
@@ -20,13 +21,14 @@ def homeView(request):
                     for count, column in enumerate(first_line_list):
                         if column.lower() != key_words[count]:
                             print('error within the received data. ')
+                            messages.info(request, 'error within the received data. ')
                             return render(request, 'main/base.html', {})
                     continue
 
                 # decodes, creates a model instance with the data information, save it and then appends it to the objects_list
                 data_list = str(line.decode('latin-1')).split('\t')
                 data_instance = Data(buyer=data_list[0], description=data_list[1], price=float(data_list[2])
-                                    , quantity=int(data_list[3]), address=data_list[4], suplier=data_list[5])
+                                    , quantity=int(data_list[3]), address=data_list[4], suplier=data_list[5].strip())
                 data_instance.save()
                 
                 objects_list.append(data_instance.get_data_list())
@@ -36,8 +38,19 @@ def homeView(request):
             for n in cash_amount:
                 total_sum += n
 
-            # print all the received data and the total amount
+            # displays a list with all the received data and the total amount
             print(objects_list)
             print(total_sum)
 
+            messages.info(request, 'data received successfully. ')
+
+        else:
+            messages.info(request, 'please, index a valid txt file. ')
+        
     return render(request, 'main/base.html', {})
+
+def listView(request):
+    # queryset
+    queryset = Data.objects.all()
+
+    return render(request, 'main/data-list.html', {'object_list': queryset})
