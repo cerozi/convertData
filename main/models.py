@@ -14,3 +14,6 @@ class Data(models.Model):
 
     def get_total_product_price(self):
         return self.quantity * self.price
+
+    def get_data_list(self):
+        return [self.buyer, self.description, self.price, self.quantity, self.address, self.suplier]
