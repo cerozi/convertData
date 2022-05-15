@@ -12,3 +12,5 @@ To run on Docker, you need to have Docker Desktop installed. Once you have it, e
 Deployed project: https://save-txt-data.herokuapp.com/
 
 P.S.: When you send a correct .txt file, the registered objects and the total amount can be seen in the console with the logs.
+
+![logs](https://user-images.githubusercontent.com/99985350/168499163-7e67dce0-01e1-442c-8880-282e042b3f2b.jpg)
