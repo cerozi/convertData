@@ -1,5 +1,10 @@
+# django imports
+
 from django.test import TestCase
 from django.urls import reverse
+
+# app imports
+
 from main.models import Data
 
 class DataModelTest(TestCase):

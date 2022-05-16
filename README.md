@@ -4,10 +4,10 @@ A webapp that receives a .txt file through a form and parse/save the data into a
 
 
 To run on Docker, you need to have Docker Desktop installed. Once you have it, execute the following commands on CMD:
-    - docker compose up --build (build up the container)
-    - docker compose down (shut down the server)
-    - docker compose exec web python manage.py migrate (do the migrations)
-    - docker compose up (the project is live at your localhost)
+    * docker compose up --build (build up the container)
+    * docker compose down (shut down the server)
+    * docker compose exec web python manage.py migrate (do the migrations)
+    * docker compose up (the project is live at your localhost)
 
 Deployed project: https://save-txt-data.herokuapp.com/
 

@@ -1,7 +1,13 @@
+# django imports
+
+from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render
+
+# app imports
+
 from .models import Data
-from django.contrib import messages
+
 
 # Create your views here.
 def homeView(request):
