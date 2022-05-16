@@ -28,6 +28,6 @@ class ListViewTests(TestCase):
 
     # GET method
     def test_list_GET(self):
-        response = self.client.get(reverse('home'))
+        response = self.client.get(reverse('data-list'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'main/data-list.html')
