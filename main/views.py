@@ -16,7 +16,10 @@ def homeView(request):
         return render(request, 'main/base.html')
     
     # gets the file and verifies if it's a .txt file; if so, proceds;
-    file = request.FILES['document']
+    try:
+        file = request.FILES['document']
+    except:
+        messages.info(request, 'please, certify to index a file. ')
     if file.content_type != 'text/plain':
         messages.info(request, 'please, index a valid txt file. ')
         return render(request, 'main/base.html', status=406)
