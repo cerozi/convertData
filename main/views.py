@@ -26,40 +26,18 @@ def homeView(request):
     cash_amount = []
     total_sum = 0
 
-    # checks if the data is what we are expecting by checking the first line columns; if they match the key_words list, then proceds;
+    # iterates from each .txt line to save the objects;
     for n, line in enumerate(file):
-        if n == 0:
-            key_words = ['comprador', 'descrição', 'preço unitário', 'quantidade', 'endereço', 'fornecedor']
+        from .models import Data
+        line_info = Data.save_data(None, n, line)
+        if line_info[0] == False:
+            messages.info(request, line_info[1])
+            return render(request, 'main/base.html', status=406)
 
-            # creates a list with the first column words by decoding the bytes to string and taking the special chars
-            first_line_list = list(map(lambda x: x.decode('utf-8').strip(), line.split(b'\t')))
-
-            # checks if the created list matches the key_words list; if so, keep goin;
-            for count, column in enumerate(first_line_list):
-                if column.lower() != key_words[count]:
-                    print('error within the first line data. ')
-                    messages.info(request, 'error within the first line data. ')
-                    return render(request, 'main/base.html', {}, status=406)
-            continue
-
-        
-        # creates a list with all the data that is on the current .txt line, then...
-        # creates a model instance using that list and save it
-        data_list = list(map(lambda x: x.decode('utf-8').strip(), line.split(b'\t')))
-        print(line.split(b'\t'))
-        try:
-            data_instance = Data(buyer=data_list[0], description=data_list[1], price=float(data_list[2])
-                                , quantity=int(data_list[3]), address=data_list[4], suplier=data_list[5].strip())
-            data_instance.save()
-        except:
-            print('error within the received data. ')
-            print(data_list)
-            messages.info(request, 'error within the received data. ')
-            return render(request, 'main/base.html', {}, status=406)
-        
         # adds the object to the objects_list, wich will be used as an output
-        objects_list.append(data_instance)
-        cash_amount.append(data_instance.get_total_product_price())
+        if line_info[0] == True:
+            objects_list.append(line_info[1])
+            cash_amount.append(line_info[2])
 
     # calculates the total cash that was on the data collected
     for n in cash_amount:
