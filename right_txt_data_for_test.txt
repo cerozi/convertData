@@ -1,2 +1,2 @@
-Comprador	Descrição	Preço Unitário	Quantidade	Endereço	Fornecedor
-Matheus	R$10 off R$20 of food	10.0	1	Rua do Tatuapé, 343	Ifood
+Comprador	DescriÃ§Ã£o	PreÃ§o UnitÃ¡rio	Quantidade	EndereÃ§o	Fornecedor
+Matheus Cerozi	Sneakers	300.0	1	Rua do TatuapÃ©, 343	Nike
